@@ -26,6 +26,21 @@ def run_eda():
     print(data.isnull().sum())
     # dataset is already cleaned no missing value's are here.
 
-    return data
+
+    # Clean Column Names
+    data.columns = data.columns.str.strip()
+
+    # Remove Useless Index Column
+    if "index" in data.columns:
+        data = data.drop("index", axis=1)
+    print("\n Columns After Cleaning:")
+    print(data.columns)
+
+    #Split Features and Label
+    X = data.drop("Result", axis = 1)
+    y = data["Result"]
+    print("\n Feature Shape:" , X.shape)
+    print("Label Shape:", y.shape)
+    return X, y
 
 
