@@ -1,10 +1,12 @@
 import pandas as pd
-
+import os
 def run_eda():
     print("Phishing Website Detection Project")
 
     #Load dataset
-    data = pd.read_csv("data/PhishingData.csv")
+    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    file_path = os.path.join(BASE_DIR,"data","PhishingData.csv")
+    data = pd.read_csv(file_path)
     print("\n Dataset Loaded Successfully")
 
     #we performing EDA(Exploratory Data Analysis)
@@ -39,7 +41,7 @@ def run_eda():
     #Split Features and Label
     X = data.drop("Result", axis = 1)
     y = data["Result"]
-    print("\n Feature Shape:" , X.shape)
+    print("\nFeature Shape:" , X.shape)
     print("Label Shape:", y.shape)
     return X, y
 
